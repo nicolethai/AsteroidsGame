@@ -1,10 +1,11 @@
 //your variable declarations here
-SpaceShip shuttle = new SpaceShip();
+SpaceShip shuttle;
 
 public void setup() 
 {
   size(500, 500);
   //your code here
+  shuttle = new SpaceShip();
 }
 public void draw() 
 {
@@ -15,19 +16,22 @@ public void keyPressed()
 {
   if (key == 'W')
   {
-
+    int x = shuttle.getX();
+    x++;
+    shuttle.setX(x);
   }
   else if (key == 'A')
   {
-
+    // shuttle.setY(shuttle.getY()++);
   }
   else if (key == 'D')
   {
-
+    shuttle.myPointDirection--;
   }
   else if (key == 'S')
   {
-    
+    shuttle.setX((int)((Math.random()*400)+100));
+    shuttle.setY((int)((Math.random()*400)+100));
   }
 }
 
