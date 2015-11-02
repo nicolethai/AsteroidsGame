@@ -9,29 +9,39 @@ public void setup()
 }
 public void draw() 
 {
+  background(0);
   shuttle.show();
 }
 
 public void keyPressed()
 {
-  if (key == 'W')
+  redraw();
+  if (key == 'w')
   {
-    int x = shuttle.getX();
-    x++;
-    shuttle.setX(x);
+    if (shuttle.getPointDirection)
+      System.out.println("W");
+      int x = shuttle.getX();
+      x++;
+      shuttle.setX(x);
   }
-  else if (key == 'A')
+  else if (key == 'a')
   {
-    // shuttle.setY(shuttle.getY()++);
+    System.out.println("A");
   }
-  else if (key == 'D')
+  else if (key == 'd')
   {
-    shuttle.myPointDirection--;
+    System.out.println("D");
+    // shuttle.myPointDirection--;
   }
-  else if (key == 'S')
+  else if (key == 's')
   {
+    System.out.println("S");
     shuttle.setX((int)((Math.random()*400)+100));
     shuttle.setY((int)((Math.random()*400)+100));
+  }
+  else
+  {
+    System.out.println("something else");
   }
 }
 
@@ -60,7 +70,7 @@ class SpaceShip extends Floater
   public void setDirectionY(double y) { myDirectionY = y; }   
   public double getDirectionY() { return myDirectionY; }  
   public void setPointDirection(int degrees) { myPointDirection = degrees; }   
-  public double getPointDirection() {return myPointDirection; }
+  public double getPointDirection() { return myPointDirection; }
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
