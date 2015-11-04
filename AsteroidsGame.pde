@@ -16,22 +16,22 @@ public void draw()
 public void keyPressed()
 {
   redraw();
+  // USE FUNCTIONS OF FLOATER
   if (key == 'w')
   {
-    if (shuttle.getPointDirection)
-      System.out.println("W");
-      int x = shuttle.getX();
-      x++;
-      shuttle.setX(x);
+    System.out.println("W");
+    // shuttle.move();
+    shuttle.accelerate(10.5);
   }
   else if (key == 'a')
   {
     System.out.println("A");
+    shuttle.rotate(-5); // left rotate
   }
   else if (key == 'd')
   {
     System.out.println("D");
-    // shuttle.myPointDirection--;
+    shuttle.rotate(5); // right rotate
   }
   else if (key == 's')
   {
@@ -41,7 +41,7 @@ public void keyPressed()
   }
   else
   {
-    System.out.println("something else");
+    System.out.println("other key");
   }
 }
 
