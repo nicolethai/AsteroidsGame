@@ -11,6 +11,7 @@ public void draw()
 {
   background(0);
   shuttle.show();
+  // shuttle.move();
 }
 
 public void keyPressed()
@@ -20,8 +21,8 @@ public void keyPressed()
   if (key == 'w')
   {
     System.out.println("W");
-    // shuttle.move();
-    shuttle.accelerate(10.5);
+    shuttle.move();
+    shuttle.accelerate(0.5);
   }
   else if (key == 'a')
   {
@@ -72,6 +73,7 @@ class SpaceShip extends Floater
   public void setPointDirection(int degrees) { myPointDirection = degrees; }   
   public double getPointDirection() { return myPointDirection; }
 }
+
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
   protected int corners;  //the number of corners, a triangular floater has 3   
