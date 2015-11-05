@@ -1,28 +1,44 @@
 //your variable declarations here
 SpaceShip shuttle;
+boolean moveShuttle;
+
+final int NUM_STARS = 50;
+Stars[] space = new Stars[NUM_STARS];
 
 public void setup() 
 {
   size(500, 500);
   //your code here
   shuttle = new SpaceShip();
+
+  for (int i = 0; i < space.length; i++)
+  {
+    space[i] = new Stars();
+  }
+
 }
 public void draw() 
 {
   background(0);
   shuttle.show();
-  // shuttle.move();
+  shuttle.move();
+
+  for (int i = 0; i < space.length; i++)
+  {
+    space[i].show();
+  }
+
 }
 
 public void keyPressed()
 {
-  redraw();
+  // redraw();
   // USE FUNCTIONS OF FLOATER
   if (key == 'w')
   {
     System.out.println("W");
-    shuttle.move();
-    shuttle.accelerate(0.5);
+    // moveShuttle = true;
+    shuttle.accelerate(0.05);
   }
   else if (key == 'a')
   {
@@ -151,3 +167,19 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   }   
 } 
 
+class Stars
+{
+  double starX, starY;
+  public Stars()
+  {
+    starX = Math.random()*500;
+    starY = Math.random()*500;
+  }
+  public void show()
+  {
+    fill(255);
+    strokeWeight(0.25);
+    stroke(255, 0, 0);
+    ellipse((float)starX, (float)starY, 3, 3);
+  }
+}
