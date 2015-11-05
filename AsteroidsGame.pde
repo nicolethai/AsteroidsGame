@@ -1,4 +1,6 @@
 //your variable declarations here
+final int SIZE = 750;
+
 SpaceShip shuttle;
 boolean moveShuttle;
 
@@ -7,15 +9,15 @@ Stars[] space = new Stars[NUM_STARS];
 
 public void setup() 
 {
-  size(500, 500);
+  size(SIZE, SIZE);
   //your code here
   shuttle = new SpaceShip();
+  shuttle.setPointDirection(270);
 
   for (int i = 0; i < space.length; i++)
   {
     space[i] = new Stars();
   }
-
 }
 public void draw() 
 {
@@ -38,27 +40,35 @@ public void keyPressed()
   {
     System.out.println("W");
     // moveShuttle = true;
-    shuttle.accelerate(0.05);
+    shuttle.accelerate(0.5); // moves forward
   }
   else if (key == 'a')
   {
     System.out.println("A");
-    shuttle.rotate(-5); // left rotate
+    shuttle.rotate(-20); // left rotate
   }
   else if (key == 'd')
   {
     System.out.println("D");
-    shuttle.rotate(5); // right rotate
+    shuttle.rotate(25); // right rotate
   }
   else if (key == 's')
   {
     System.out.println("S");
+    shuttle.accelerate(-0.5); // move backwards
+  }
+  else if (key == 32)
+  {
+    System.out.println("Space");
     shuttle.setX((int)((Math.random()*400)+100));
     shuttle.setY((int)((Math.random()*400)+100));
+    shuttle.setDirectionX(0);
+    shuttle.setDirectionY(0);
   }
   else
   {
     System.out.println("other key");
+
   }
 }
 
@@ -72,9 +82,9 @@ class SpaceShip extends Floater
     xCorners = xS;
     yCorners = yS;
     myColor = 255;
-    myCenterX = 500/2;
-    myCenterY = 500/2;
-    myDirectionX = 16;
+    myCenterX = SIZE/2;
+    myCenterY = SIZE/2;
+    myDirectionX = 0;
     myDirectionY = 0;
     myPointDirection = 0;
   }
@@ -172,8 +182,8 @@ class Stars
   double starX, starY;
   public Stars()
   {
-    starX = Math.random()*500;
-    starY = Math.random()*500;
+    starX = Math.random()*SIZE;
+    starY = Math.random()*SIZE;
   }
   public void show()
   {
