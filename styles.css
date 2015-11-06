@@ -37,9 +37,10 @@ p {
 
 #A {
     display: inline-block;
-    margin-left: 100px;
+    margin-left: 25px;
 }
 
 #D {
     display: inline-block;
+    margin-right: 25px;
 }
