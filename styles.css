@@ -25,6 +25,7 @@ footer {
 p {
     font-style: normal;
     font-size: 75%;
+    line-height: 80%;
 }
 
 #W {
@@ -41,5 +42,5 @@ p {
 
 #D {
     display: inline-block;
-    margin-left: 30px;
+    margin-left: 100px;
 }
