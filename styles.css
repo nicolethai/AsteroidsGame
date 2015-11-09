@@ -28,18 +28,18 @@ p {
 }
 
 #W {
-    display: inline-block;
+
 }
 
 #S {
-    display: inline-block;
+
 }
 
 #A {
     display: inline-block;
-    margin-left: 10px;
 }
 
 #D {
     display: inline-block;
+    margin-left: 30px;
 }
