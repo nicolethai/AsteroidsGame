@@ -10,14 +10,15 @@ Stars[] space = new Stars[NUM_STARS];
 public void setup() 
 {
   size(SIZE, SIZE);
-  //your code here
-  shuttle = new SpaceShip();
-  shuttle.setPointDirection(270);
 
   for (int i = 0; i < space.length; i++)
   {
     space[i] = new Stars();
   }
+
+  shuttle = new SpaceShip();
+  shuttle.setPointDirection(270);
+
 }
 public void draw() 
 {
@@ -40,7 +41,7 @@ public void keyPressed()
   {
     // System.out.println("W");
     // moveShuttle = true;
-    shuttle.accelerate(0.5); // moves forward
+    shuttle.accelerate(0.3); // moves forward
   }
   else if (key == 'a')
   {
@@ -55,7 +56,7 @@ public void keyPressed()
   else if (key == 's')
   {
     // System.out.println("S");
-    shuttle.accelerate(-0.5); // move backwards
+    shuttle.accelerate(-0.3); // move backwards
   }
   else if (key == 32)
   {
