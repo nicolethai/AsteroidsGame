@@ -38,28 +38,28 @@ public void keyPressed()
   // USE FUNCTIONS OF FLOATER
   if (key == 'w')
   {
-    System.out.println("W");
+    // System.out.println("W");
     // moveShuttle = true;
     shuttle.accelerate(0.5); // moves forward
   }
   else if (key == 'a')
   {
-    System.out.println("A");
+    // System.out.println("A");
     shuttle.rotate(-20); // left rotate
   }
   else if (key == 'd')
   {
-    System.out.println("D");
+    // System.out.println("D");
     shuttle.rotate(25); // right rotate
   }
   else if (key == 's')
   {
-    System.out.println("S");
+    // System.out.println("S");
     shuttle.accelerate(-0.5); // move backwards
   }
   else if (key == 32)
   {
-    System.out.println("Space");
+    // System.out.println("Space");
     shuttle.setX((int)((Math.random()*400)+100));
     shuttle.setY((int)((Math.random()*400)+100));
     shuttle.setDirectionX(0);
