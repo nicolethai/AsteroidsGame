@@ -28,11 +28,11 @@ p {
 }
 
 #W {
-
+    display: inline-block;
 }
 
 #S {
-
+    display: inline-block;
 }
 
 #A {
@@ -42,5 +42,4 @@ p {
 
 #D {
     display: inline-block;
-    margin-right: 10px;
 }
