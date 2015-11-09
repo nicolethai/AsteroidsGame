@@ -25,22 +25,25 @@ footer {
 p {
     font-style: normal;
     font-size: 75%;
-    line-height: 70%;
 }
 
 #W {
+    line-height: 70%;
 
 }
 
 #S {
+    line-height: 70%;
 
 }
 
 #A {
+    line-height: 70%;
     display: inline-block;
 }
 
 #D {
+    line-height: 70%;
     display: inline-block;
     margin-left: 100px;
 }
