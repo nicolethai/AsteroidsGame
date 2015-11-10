@@ -38,12 +38,12 @@ p {
 }
 
 #A {
-    line-height: 70%;
+    line-height: 25%;
     display: inline-block;
 }
 
 #D {
-    line-height: 70%;
+    line-height: 25%;
     display: inline-block;
     margin-left: 100px;
 }
