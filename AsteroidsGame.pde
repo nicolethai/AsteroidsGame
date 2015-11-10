@@ -2,6 +2,7 @@
 final int SIZE = 750;
 
 SpaceShip shuttle;
+Asteroids rocky;
 
 final int NUM_STARS = 50;
 Stars[] space = new Stars[NUM_STARS];
@@ -14,6 +15,8 @@ public void setup()
   {
     space[i] = new Stars();
   }
+
+  rockey = new Asteroids;
 
   shuttle = new SpaceShip();
   shuttle.setPointDirection(270);
@@ -168,6 +171,34 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     endShape(CLOSE);  
   }   
 } 
+
+class Asteroids extends Floater
+{
+  public Asteroids() 
+  {
+    corners = 4;
+    int[] xA = {};
+    int[] yA = {};
+    xCorners = xA;
+    yCorners = yA;
+    myColor = 255;
+    myCenterX = SIZE/2;
+    myCenterY = SIZE/2;
+    myDirectionX = 0;
+    myDirectionY = 0;
+    myPointDirection = 0;    
+  }
+  public void setX(int x) { myCenterX = x; } 
+  public int getX() { return (int)myCenterX; }   
+  public void setY(int y) { myCenterY = y; }   
+  public int getY() { return (int)myCenterX; }
+  public void setDirectionX(double x) { myDirectionX = x; }   
+  public double getDirectionX() { return myDirectionX; }  
+  public void setDirectionY(double y) { myDirectionY = y; }   
+  public double getDirectionY() { return myDirectionY; }  
+  public void setPointDirection(int degrees) { myPointDirection = degrees; }   
+  public double getPointDirection() { return myPointDirection; }
+}
 
 class Stars
 {
