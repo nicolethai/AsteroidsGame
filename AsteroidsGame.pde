@@ -2,7 +2,6 @@
 final int SIZE = 750;
 
 SpaceShip shuttle;
-boolean moveShuttle;
 
 final int NUM_STARS = 50;
 Stars[] space = new Stars[NUM_STARS];
@@ -35,32 +34,24 @@ public void draw()
 
 public void keyPressed()
 {
-  // redraw();
-  // USE FUNCTIONS OF FLOATER
   if (key == 'w')
   {
-    // System.out.println("W");
-    // moveShuttle = true;
     shuttle.accelerate(0.3); // moves forward
   }
   else if (key == 'a')
   {
-    // System.out.println("A");
     shuttle.rotate(-20); // left rotate
   }
   else if (key == 'd')
   {
-    // System.out.println("D");
     shuttle.rotate(25); // right rotate
   }
-  else if (key == 's')
+  /*else if (key == 's')
   {
-    // System.out.println("S");
     shuttle.accelerate(-0.3); // move backwards
-  }
+  }*/
   else if (key == 32)
   {
-    // System.out.println("Space");
     shuttle.setX((int)((Math.random()*400)+100));
     shuttle.setY((int)((Math.random()*400)+100));
     shuttle.setDirectionX(0);
