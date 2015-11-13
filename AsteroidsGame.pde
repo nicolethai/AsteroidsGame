@@ -4,7 +4,7 @@ final int SIZE = 750;
 SpaceShip shuttle;
 Asteroid rocky;
 
-final int NUM_STARS = 50;
+final int NUM_STARS = 100;
 Stars[] space = new Stars[NUM_STARS];
 
 final int NUM_ASTEROIDS = 10;
@@ -44,6 +44,7 @@ public void draw()
   {
     asteroids[i].show();
     asteroids[i].move();
+    asteroids[i].accelerate(0.5); // PLAY WITH ACCEL
   }
 
 }
@@ -76,7 +77,6 @@ public void keyPressed()
   else
   {
     System.out.println("other key");
-
   }
 }
 
@@ -191,16 +191,17 @@ class Asteroid extends Floater
   public Asteroid() 
   {
     corners = 6;
-    int[] xA = {-8, 4, 13, 7, 4, -7};
-    int[] yA = {10, 12, 6, -2, -10, -4};
+    int[] xA = {-8, 4, 13, 16, 4, -10};
+    int[] yA = {10, 12, 6, -5, -10, -4};
     xCorners = xA;
     yCorners = yA;
     myColor = 255;
-    myCenterX = 350;
-    myCenterY = 200;
+    myCenterX = (int)(Math.random()*SIZE);
+    myCenterY = (int)(Math.random()*SIZE);
     myDirectionX = 0;
     myDirectionY = 0;
-    myPointDirection = 0;    
+    myPointDirection = 0;  
+    speedOfRotation = (int)((Math.random()*5)+1);  
   }
   public void move()
   {
