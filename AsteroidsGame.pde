@@ -2,13 +2,13 @@
 final int SIZE = 750;
 
 SpaceShip shuttle;
-Asteroid rocky;
 
 final int NUM_STARS = 100;
 Stars[] space = new Stars[NUM_STARS];
 
 final int NUM_ASTEROIDS = 10;
 Asteroid[] asteroids = new Asteroid[NUM_ASTEROIDS];
+Asteroid rock;
 
 public void setup() 
 {
@@ -23,6 +23,8 @@ public void setup()
   {
     asteroids[i] = new Asteroid();
   }
+
+  rock = new Asteroid();
 
   shuttle = new SpaceShip();
   shuttle.setPointDirection(270);
@@ -40,12 +42,18 @@ public void draw()
   shuttle.show();
   shuttle.move();
 
+  /*
   for (int i = 0; i < asteroids.length; i++)
   {
     asteroids[i].show();
     asteroids[i].move();
     asteroids[i].accelerate(0.5); // PLAY WITH ACCEL
   }
+  */
+  rock.show();
+  rock.move();
+  rock.accelerate(0.1);
+
 
 }
 
@@ -166,7 +174,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
       myCenterY = height;    
     }   
   }   
-  public void show ()  //Draws the floater at the current position  
+  public void show ()  // Draws the floater at the current position  
   {             
     fill(myColor);   
     stroke(myColor);    
@@ -196,8 +204,8 @@ class Asteroid extends Floater
     xCorners = xA;
     yCorners = yA;
     myColor = 255;
-    myCenterX = (int)(Math.random()*SIZE);
-    myCenterY = (int)(Math.random()*SIZE);
+    myCenterX = 0;
+    myCenterY = 0;
     myDirectionX = 0;
     myDirectionY = 0;
     myPointDirection = 0;  
