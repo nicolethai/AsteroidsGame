@@ -52,7 +52,7 @@ public void draw()
   */
   rock.show();
   rock.move();
-  rock.accelerate(0.1);
+  //rock.accelerate(0.1);
 
 
 }
@@ -65,11 +65,11 @@ public void keyPressed()
   }
   else if (key == 'a')
   {
-    shuttle.rotate(-20); // left rotate
+    shuttle.turn(-20); // left rotate
   }
   else if (key == 'd')
   {
-    shuttle.rotate(25); // right rotate
+    shuttle.turn(25); // right rotate
   }
   /*else if (key == 's')
   {
@@ -145,7 +145,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     myDirectionX += ((dAmount) * Math.cos(dRadians));    
     myDirectionY += ((dAmount) * Math.sin(dRadians));       
   }   
-  public void rotate (int nDegreesOfRotation)   
+  public void turn (int nDegreesOfRotation)   
   {     
     //rotates the floater by a given number of degrees    
     myPointDirection+=nDegreesOfRotation;   
@@ -199,8 +199,8 @@ class Asteroid extends Floater
   public Asteroid() 
   {
     corners = 6;
-    int[] xA = {-8, 4, 13, 16, 4, -10};
-    int[] yA = {10, 12, 6, -5, -10, -4};
+    int[] xA = {-11, 7, 13, 6, -11, -5};
+    int[] yA = {-8, -8, 0, 10, 8, 0};
     xCorners = xA;
     yCorners = yA;
     myColor = 255;
@@ -208,13 +208,14 @@ class Asteroid extends Floater
     myCenterY = 0;
     myDirectionX = 0;
     myDirectionY = 0;
-    myPointDirection = 0;  
-    speedOfRotation = (int)((Math.random()*5)+1);  
+    myPointDirection = 0; // Math.random()*360;  
+    speedOfRotation = 1; // (int)((Math.random()*5)+1);  
   }
   public void move()
   {
-    rotate(speedOfRotation);
-    super.move();   
+    turn(speedOfRotation);
+    super.move(); 
+    //setPointDirection((int)myPointDirection);
   }
   public void setX(int x) { myCenterX = x; } 
   public int getX() { return (int)myCenterX; }   
