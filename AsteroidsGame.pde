@@ -42,18 +42,15 @@ public void draw()
   shuttle.show();
   shuttle.move();
 
-  /*
+
   for (int i = 0; i < asteroids.length; i++)
   {
     asteroids[i].show();
     asteroids[i].move();
-    asteroids[i].accelerate(0.5); // PLAY WITH ACCEL
   }
-  */
+  
   rock.show();
   rock.move();
-  //rock.accelerate(0.1);
-
 
 }
 
@@ -176,7 +173,8 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   }   
   public void show ()  // Draws the floater at the current position  
   {             
-    fill(myColor);   
+    noFill(); //fill(myColor); 
+    strokeWeight(1);  
     stroke(myColor);    
     //convert degrees to radians for sin and cos         
     double dRadians = myPointDirection*(Math.PI/180);                 
@@ -204,18 +202,17 @@ class Asteroid extends Floater
     xCorners = xA;
     yCorners = yA;
     myColor = 255;
-    myCenterX = 0;
-    myCenterY = 0;
-    myDirectionX = 0;
-    myDirectionY = 0;
-    myPointDirection = 0; // Math.random()*360;  
-    speedOfRotation = 1; // (int)((Math.random()*5)+1);  
+    myCenterX = Math.random()*SIZE;
+    myCenterY = Math.random()*SIZE;
+    myDirectionX = (Math.random()*5)-2;
+    myDirectionY = (Math.random()*5)-2;
+    myPointDirection = 0;  
+    speedOfRotation = (int)((Math.random()*3)+1);  
   }
   public void move()
   {
     turn(speedOfRotation);
-    super.move(); 
-    //setPointDirection((int)myPointDirection);
+    super.move();   
   }
   public void setX(int x) { myCenterX = x; } 
   public int getX() { return (int)myCenterX; }   
