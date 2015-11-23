@@ -52,6 +52,8 @@ public void draw()
   rock.show();
   rock.move();
 
+  collision();
+
 }
 
 public void keyPressed()
@@ -87,6 +89,7 @@ public void keyPressed()
 
 class SpaceShip extends Floater  
 {   
+  boolean danger;
   public SpaceShip() 
   {
     corners = 4;
@@ -100,6 +103,19 @@ class SpaceShip extends Floater
     myDirectionX = 0;
     myDirectionY = 0;
     myPointDirection = 0;
+    danger = false;
+  }
+  public void show()
+  {
+    noFill(); //fill(myColor); 
+    strokeWeight(1);  
+    stroke(myColor);
+    if (danger == true)
+    {
+      fill(255, 0, 0);
+      stroke(255, 0, 0);
+    } 
+    super.show();
   }
   public void setX(int x) { myCenterX = x; } 
   public int getX() { return (int)myCenterX; }   
@@ -172,10 +188,12 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     }   
   }   
   public void show ()  // Draws the floater at the current position  
-  {             
+  {      
+    /*       
     noFill(); //fill(myColor); 
     strokeWeight(1);  
-    stroke(myColor);    
+    stroke(myColor); 
+    */   
     //convert degrees to radians for sin and cos         
     double dRadians = myPointDirection*(Math.PI/180);                 
     int xRotatedTranslated, yRotatedTranslated;    
@@ -197,8 +215,8 @@ class Asteroid extends Floater
   public Asteroid() 
   {
     corners = 6;
-    int[] xA = {-11, 7, 13, 6, -11, -5};
-    int[] yA = {-8, -8, 0, 10, 8, 0};
+    int[] xA = {-8, 4, 13, 16, 4, -10};
+    int[] yA = {10, 12, 6, -5, -10, -4};
     xCorners = xA;
     yCorners = yA;
     myColor = 255;
@@ -213,6 +231,13 @@ class Asteroid extends Floater
   {
     turn(speedOfRotation);
     super.move();   
+  }
+  public void show()
+  {
+    noFill(); //fill(myColor); 
+    strokeWeight(1);  
+    stroke(myColor);
+    super.show(); 
   }
   public void setX(int x) { myCenterX = x; } 
   public int getX() { return (int)myCenterX; }   
@@ -240,5 +265,20 @@ class Stars
     strokeWeight(0.25);
     stroke(255, 0, 0);
     ellipse((float)starX, (float)starY, 3, 3);
+  }
+}
+
+public void collision()
+{
+  for (int i = 0; i < asteroids.length; i++)
+  {
+    if (asteroids[i].getX() < shuttle.getX() ||
+        asteroids[i].getX() > shuttle.getX() ||
+        asteroids[i].getY() < shuttle.getY() ||
+        asteroids[i].getY() > shuttle.getY()    )
+      shuttle.danger = true;
+    else {
+      shuttle.danger = false;
+    }
   }
 }
