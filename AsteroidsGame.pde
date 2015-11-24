@@ -109,7 +109,7 @@ class SpaceShip extends Floater
   {
     noFill(); //fill(myColor); 
     strokeWeight(1);  
-    stroke(myColor);
+    stroke(255);
     if (danger == true)
     {
       fill(255, 0, 0);
@@ -268,15 +268,18 @@ class Stars
   }
 }
 
+// Only 2D 
 public void collision()
 {
   for (int i = 0; i < asteroids.length; i++)
   {
-    if (asteroids[i].getX() < shuttle.getX() ||
-        asteroids[i].getX() > shuttle.getX() ||
-        asteroids[i].getY() < shuttle.getY() ||
-        asteroids[i].getY() > shuttle.getY()    )
-      shuttle.danger = true;
+    if (asteroids[i].getX() < shuttle.getX()+3 ||
+        asteroids[i].getX() < shuttle.getX()-3 ||
+        asteroids[i].getY() < shuttle.getY()+3 ||
+        asteroids[i].getY() < shuttle.getY()-3   )
+      {
+        shuttle.danger = true;
+      }
     else {
       shuttle.danger = false;
     }
