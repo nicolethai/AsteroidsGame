@@ -74,7 +74,7 @@ public void keyPressed()
   {
     shuttle.accelerate(-0.3); // move backwards
   }*/
-  else if (key == 32)
+  else if (key == 's') //32 = space
   {
     shuttle.setX((int)((Math.random()*400)+100));
     shuttle.setY((int)((Math.random()*400)+100));
