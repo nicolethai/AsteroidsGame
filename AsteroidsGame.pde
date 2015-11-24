@@ -52,8 +52,6 @@ public void draw()
   rock.show();
   rock.move();
 
-  collision();
-
 }
 
 public void keyPressed()
@@ -104,18 +102,6 @@ class SpaceShip extends Floater
     myDirectionY = 0;
     myPointDirection = 0;
     danger = false;
-  }
-  public void show()
-  {
-    noFill(); //fill(myColor); 
-    strokeWeight(1);  
-    stroke(255);
-    if (danger == true)
-    {
-      fill(255, 0, 0);
-      stroke(255, 0, 0);
-    } 
-    super.show();
   }
   public void setX(int x) { myCenterX = x; } 
   public int getX() { return (int)myCenterX; }   
@@ -188,12 +174,11 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     }   
   }   
   public void show ()  // Draws the floater at the current position  
-  {      
-    /*       
+  {             
     noFill(); //fill(myColor); 
     strokeWeight(1);  
     stroke(myColor); 
-    */   
+
     //convert degrees to radians for sin and cos         
     double dRadians = myPointDirection*(Math.PI/180);                 
     int xRotatedTranslated, yRotatedTranslated;    
@@ -232,13 +217,6 @@ class Asteroid extends Floater
     turn(speedOfRotation);
     super.move();   
   }
-  public void show()
-  {
-    noFill(); //fill(myColor); 
-    strokeWeight(1);  
-    stroke(myColor);
-    super.show(); 
-  }
   public void setX(int x) { myCenterX = x; } 
   public int getX() { return (int)myCenterX; }   
   public void setY(int y) { myCenterY = y; }   
@@ -265,23 +243,5 @@ class Stars
     strokeWeight(0.25);
     stroke(255, 0, 0);
     ellipse((float)starX, (float)starY, 3, 3);
-  }
-}
-
-// Only 2D 
-public void collision()
-{
-  for (int i = 0; i < asteroids.length; i++)
-  {
-    if (asteroids[i].getX() < shuttle.getX()+3 ||
-        asteroids[i].getX() < shuttle.getX()-3 ||
-        asteroids[i].getY() < shuttle.getY()+3 ||
-        asteroids[i].getY() < shuttle.getY()-3   )
-      {
-        shuttle.danger = true;
-      }
-    else {
-      shuttle.danger = false;
-    }
   }
 }
