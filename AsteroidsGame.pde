@@ -10,6 +10,8 @@ final int NUM_ASTEROIDS = 10;
 Asteroid[] asteroids = new Asteroid[NUM_ASTEROIDS];
 Asteroid rock;
 
+PImage alien;
+
 public void setup() 
 {
   size(SIZE, SIZE);
@@ -29,6 +31,7 @@ public void setup()
   shuttle = new SpaceShip();
   shuttle.setPointDirection(270);
 
+  alien = loadImage("Alien.png");
 }
 public void draw() 
 {
@@ -216,6 +219,11 @@ class Asteroid extends Floater
   {
     turn(speedOfRotation);
     super.move();   
+  }
+  public void show()
+  {
+    image(alien, (int)Math.random()*SIZE, (int)Math.random()*SIZE, 10, 10);
+    super.show();
   }
   public void setX(int x) { myCenterX = x; } 
   public int getX() { return (int)myCenterX; }   
