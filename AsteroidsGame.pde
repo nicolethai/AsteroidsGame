@@ -6,8 +6,8 @@ SpaceShip shuttle;
 final int NUM_STARS = 100;
 Stars[] space = new Stars[NUM_STARS];
 
-final int NUM_ASTEROIDS = 10;
-Asteroid[] asteroids = new Asteroid[NUM_ASTEROIDS];
+final int NUM_ASTEROIDS = 30;
+ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
 Asteroid rock;
 
 PImage alien;
@@ -21,9 +21,9 @@ public void setup()
     space[i] = new Stars();
   }
 
-  for (int i = 0; i < asteroids.length; i++)
+  for (int i = 0; i < NUM_ASTEROIDS; i++)
   {
-    asteroids[i] = new Asteroid();
+    asteroids.add(new Asteroid());
   }
 
   rock = new Asteroid();
@@ -46,11 +46,18 @@ public void draw()
   shuttle.move();
 
 
-  for (int i = 0; i < asteroids.length; i++)
+  for (int i = 0; i < asteroids.size(); i++)
   {
-    asteroids[i].show();
-    asteroids[i].move();
+    asteroids.get(i).show();
+    asteroids.get(i).move();
+    if (dist(shuttle.getX(), shuttle.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) <= 5)
+    {
+      asteroids.remove(i);
+      System.out.println("removed");
+    }
   }
+
+  System.out.println(asteroids.size());
   
   rock.show();
   rock.move();
