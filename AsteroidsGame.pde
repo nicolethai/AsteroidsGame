@@ -50,7 +50,7 @@ public void draw()
   {
     asteroids.get(i).show();
     asteroids.get(i).move();
-    if (dist(shuttle.getX(), shuttle.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) <= 5)
+    if (dist(shuttle.getX(), shuttle.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) <= 1)
     {
       asteroids.remove(i);
     }
@@ -79,7 +79,7 @@ public void keyPressed()
   {
     shuttle.accelerate(-0.3); // move backwards
   }*/
-  else if (key == 's') //32 = space
+  else if (key == 32) //32 = space
   {
     shuttle.setX((int)((Math.random()*400)+100));
     shuttle.setY((int)((Math.random()*400)+100));
