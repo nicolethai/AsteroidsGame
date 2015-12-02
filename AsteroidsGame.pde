@@ -53,11 +53,8 @@ public void draw()
     if (dist(shuttle.getX(), shuttle.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) <= 5)
     {
       asteroids.remove(i);
-      System.out.println("removed");
     }
   }
-
-  System.out.println(asteroids.size());
   
   rock.show();
   rock.move();
