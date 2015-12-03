@@ -8,7 +8,6 @@ Stars[] space = new Stars[NUM_STARS];
 
 final int NUM_ASTEROIDS = 30;
 ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
-Asteroid rock;
 
 PImage alien;
 
@@ -25,8 +24,6 @@ public void setup()
   {
     asteroids.add(new Asteroid());
   }
-
-  rock = new Asteroid();
 
   shuttle = new SpaceShip();
   shuttle.setPointDirection(270);
@@ -50,15 +47,13 @@ public void draw()
   {
     asteroids.get(i).show();
     asteroids.get(i).move();
-    if (dist(shuttle.getX(), shuttle.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) <= 1)
+    //if (dist(shuttle.getX(), shuttle.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) <= 1)
+    if(dist(shuttle.getX(), shuttle.getY(),asteroids.get(i).getX(),asteroids.get(i).getY())<20)
     {
       asteroids.remove(i);
     }
   }
-  
-  rock.show();
-  rock.move();
-
+  text("Num Asteroids: " + asteroids.size(), 10, 690, 10);
 }
 
 public void keyPressed()
@@ -113,7 +108,7 @@ class SpaceShip extends Floater
   public void setX(int x) { myCenterX = x; } 
   public int getX() { return (int)myCenterX; }   
   public void setY(int y) { myCenterY = y; }   
-  public int getY() { return (int)myCenterX; }
+  public int getY() { return (int)myCenterY; }
   public void setDirectionX(double x) { myDirectionX = x; }   
   public double getDirectionX() { return myDirectionX; }  
   public void setDirectionY(double y) { myDirectionY = y; }   
@@ -232,7 +227,7 @@ class Asteroid extends Floater
   public void setX(int x) { myCenterX = x; } 
   public int getX() { return (int)myCenterX; }   
   public void setY(int y) { myCenterY = y; }   
-  public int getY() { return (int)myCenterX; }
+  public int getY() { return (int)myCenterY; }
   public void setDirectionX(double x) { myDirectionX = x; }   
   public double getDirectionX() { return myDirectionX; }  
   public void setDirectionY(double y) { myDirectionY = y; }   
