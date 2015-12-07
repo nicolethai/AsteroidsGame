@@ -14,6 +14,10 @@ PImage alien;
 public void setup() 
 {
   size(SIZE, SIZE);
+  background(125);
+
+  textSize(25);
+  text("Press ENTER to Play", SIZE/2-110, SIZE/2);
 
   for (int i = 0; i < space.length; i++)
   {
@@ -29,31 +33,35 @@ public void setup()
   shuttle.setPointDirection(270);
 
   alien = loadImage("Alien.png");
+
 }
 public void draw() 
 {
-  background(0);
-
-  for (int i = 0; i < space.length; i++)
-  {
-    space[i].show();
+  if (key == ENTER)
+  {  
+    background(0);
+  
+      for (int i = 0; i < space.length; i++)
+      {
+        space[i].show();
+      }
+  
+      shuttle.show();
+      shuttle.move();
+  
+  
+      for (int i = 0; i < asteroids.size(); i++)
+      {
+        asteroids.get(i).show();
+        asteroids.get(i).move();
+        if(dist(shuttle.getX(), shuttle.getY(),asteroids.get(i).getX(),asteroids.get(i).getY())<20)
+        {
+          asteroids.remove(i);
+        }
+      }
+      textSize(13);
+      text("Num Asteroids: " + asteroids.size(), 10, 725);
   }
-
-  shuttle.show();
-  shuttle.move();
-
-
-  for (int i = 0; i < asteroids.size(); i++)
-  {
-    asteroids.get(i).show();
-    asteroids.get(i).move();
-    //if (dist(shuttle.getX(), shuttle.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) <= 1)
-    if(dist(shuttle.getX(), shuttle.getY(),asteroids.get(i).getX(),asteroids.get(i).getY())<20)
-    {
-      asteroids.remove(i);
-    }
-  }
-  text("Num Asteroids: " + asteroids.size(), 10, 690, 10);
 }
 
 public void keyPressed()
@@ -177,7 +185,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   }   
   public void show ()  // Draws the floater at the current position  
   {             
-    noFill(); //fill(myColor); 
+    fill(myColor); 
     strokeWeight(1);  
     stroke(myColor); 
 
@@ -206,7 +214,7 @@ class Asteroid extends Floater
     int[] yA = {10, 12, 6, -5, -10, -4};
     xCorners = xA;
     yCorners = yA;
-    myColor = 255;
+    myColor = 125;
     myCenterX = Math.random()*SIZE;
     myCenterY = Math.random()*SIZE;
     myDirectionX = (Math.random()*5)-2;
