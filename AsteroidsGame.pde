@@ -2,7 +2,9 @@
 final int SIZE = 750;
 
 SpaceShip shuttle;
-Bullet bob;
+
+ArrayList <Bullet> bullets = new ArrayList <Bullet>();
+int numBullets = 0;
 
 final int NUM_STARS = 100;
 Stars[] space = new Stars[NUM_STARS];
@@ -35,8 +37,6 @@ public void setup()
   shuttle = new SpaceShip();
   shuttle.setPointDirection(270);
 
-  bob = new Bullet(shuttle);
-
   alien = loadImage("Alien.png");
 
 }
@@ -53,10 +53,14 @@ public void draw()
   
       shuttle.show();
       shuttle.move();
+
   
-      bob.show();
-      // bob.move();
-  
+      for (int i = 0; i < bullets.size(); i++)
+      {
+        bullets.get(i).show();
+        bullets.get(i).move();
+      }
+
       for (int i = 0; i < asteroids.size(); i++)
       {
         asteroids.get(i).show();
@@ -65,9 +69,19 @@ public void draw()
         {
           asteroids.remove(i);
         }
+        for (int j = 0; j < bullets.size(); j++)
+        {
+          if(get(bullets.get(j).getX(), bullets.get(j).getY()) == get(asteroids.get(i).getX(), asteroids.get(i).getY()))
+          {
+            asteroids.remove(i);
+            bullets.remove(j);
+          }
+        }
       }
+
       textSize(13);
       text("Num Asteroids: " + asteroids.size(), 10, 725);
+      text("Num Bullets: " + bullets.size(), 10, 740);
   // }
 }
 
@@ -96,10 +110,15 @@ public void keyPressed()
     shuttle.setDirectionX(0);
     shuttle.setDirectionY(0);
   }
+  else if (key == 'f')
+  {
+    bullets.add(new Bullet(shuttle));
+  } 
   else
   {
     System.out.println("other key");
   }
+
 }
 
 class SpaceShip extends Floater  
