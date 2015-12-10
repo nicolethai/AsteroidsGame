@@ -55,11 +55,6 @@ public void draw()
       shuttle.move();
 
   
-      for (int i = 0; i < bullets.size(); i++)
-      {
-        bullets.get(i).show();
-        bullets.get(i).move();
-      }
 
       for (int i = 0; i < asteroids.size(); i++)
       {
@@ -69,12 +64,45 @@ public void draw()
         {
           asteroids.remove(i);
         }
-        for (int j = 0; j < bullets.size(); j++)
+        /*
+        for (int j = 0; j < bullets.size(); i++)
         {
           if(get(bullets.get(j).getX(), bullets.get(j).getY()) == get(asteroids.get(i).getX(), asteroids.get(i).getY()))
           {
-            asteroids.remove(i);
-            bullets.remove(j);
+            System.out.println("Bullet hit Asteroid.");
+          }
+        }
+        */
+      }
+/*
+      if (bullets.size() > 0)
+      {
+        for (int i = 0; i < bullets.size(); i++)
+        {
+          for (int j = 0; j < asteroids.size(); j++)
+          {
+            if(get(bullets.get(i).getX(), bullets.get(i).getY()) == get(asteroids.get(j).getX(), asteroids.get(j).getY()))
+            {
+              System.out.println("Bullet hit Asteroid.");
+              asteroids.remove(j);
+              bullets.remove(i);
+            }
+          }
+        }
+      }
+*/
+
+      for (int i = 0; i < bullets.size(); i++)
+      {
+        bullets.get(i).show();
+        bullets.get(i).move();
+        for (int j = 0; j < asteroids.size(); j++)
+        {
+          if(get(bullets.get(i).getX(), bullets.get(i).getY()) == get(asteroids.get(j).getX(), asteroids.get(j).getY()))
+          {
+            System.out.println("Bullet hit Asteroid.");
+            asteroids.remove(j);
+            bullets.remove(i);
           }
         }
       }
