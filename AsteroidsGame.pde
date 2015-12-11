@@ -54,12 +54,6 @@ public void draw()
       shuttle.show();
       shuttle.move();
 
-      for (int i = 0; i < bullets.size(); i++)
-      {
-        bullets.get(i).show();
-        bullets.get(i).move();
-      }  
-
       for (int i = 0; i < asteroids.size(); i++)
       {
         asteroids.get(i).show();
@@ -68,11 +62,20 @@ public void draw()
         {
           asteroids.remove(i);
         }
-        for (int j = 0; j < bullets.size(); j++)
+      }
+
+      for (int i = 0; i < bullets.size(); i++)
+      {
+        bullets.get(i).show();
+        bullets.get(i).move();
+        for (int j = 0; j < asteroids.size(); j++)
         {
-          if(dist(bullets.get(j).getX(), bullets.get(j).getY(), asteroids.get(i).getX(), asteroids.get(i).getY())<20)
+          if(dist(bullets.get(i).getX(), bullets.get(i).getY(), asteroids.get(j).getX(), asteroids.get(j).getY())<20)
           {
             System.out.println("Bullet hit Asteroid.");
+            asteroids.remove(j);
+            bullets.remove(i);
+            break; // breaks out of loop to recheck ArrayList.size() in loop i
           }
         }
       }
@@ -111,12 +114,11 @@ public void keyPressed()
   else if (key == 'f')
   {
     bullets.add(new Bullet(shuttle));
-  } 
+  }
   else
   {
     System.out.println("other key");
   }
-
 }
 
 class SpaceShip extends Floater  
@@ -163,6 +165,7 @@ class Bullet extends Floater
   }
   public void show()
   {
+    noStroke();
     fill(0, 255, 0);
     ellipse((float)myCenterX, (float)myCenterY, 5, 5);    
   }
