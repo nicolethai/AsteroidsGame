@@ -75,7 +75,7 @@ public void draw()
         {
           if(dist(bullets.get(i).getX(), bullets.get(i).getY(), asteroids.get(j).getX(), asteroids.get(j).getY())<20)
           {
-            System.out.println("Bullet hit Asteroid.");
+            // System.out.println("Bullet hit Asteroid.");
             asteroids.remove(j);
             bullets.remove(i);
             break; // breaks out of loop to recheck ArrayList.size() in loop i
@@ -119,15 +119,15 @@ public void keyPressed()
   {
     bullets.add(new Bullet(shuttle));
   }
+  /*
   else
   {
     System.out.println("other key");
-  }
+  }*/
 }
 
 class SpaceShip extends Floater  
 {   
-  boolean danger;
   public SpaceShip() 
   {
     corners = 4;
@@ -141,7 +141,6 @@ class SpaceShip extends Floater
     myDirectionX = 0;
     myDirectionY = 0;
     myPointDirection = 0;
-    danger = false;
   }
   public void setX(int x) { myCenterX = x; } 
   public int getX() { return (int)myCenterX; }   
