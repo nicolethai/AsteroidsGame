@@ -6,17 +6,19 @@ SpaceShip shuttle;
 ArrayList <Bullet> bullets = new ArrayList <Bullet>();
 int numBullets = 0;
 
-final int NUM_STARS = 100;
+public int NUM_STARS = 100;
 Stars[] space = new Stars[NUM_STARS];
 
-final int NUM_ASTEROIDS = 30;
+public int NUM_ASTEROIDS = 30;
 ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
 
-PImage alien;
+// PImage alien;
+
+public boolean lose = false;
 
 public void setup() 
 {
-  size(SIZE, SIZE);
+  size(750, 750); // use ints for Processing
   
   /*
   background(125);
@@ -37,8 +39,7 @@ public void setup()
   shuttle = new SpaceShip();
   shuttle.setPointDirection(270);
 
-  alien = loadImage("Alien.png");
-
+  // alien = loadImage("Alien.png");
 }
 public void draw() 
 {
@@ -58,9 +59,11 @@ public void draw()
       {
         asteroids.get(i).show();
         asteroids.get(i).move();
-        if(dist(shuttle.getX(), shuttle.getY(),asteroids.get(i).getX(),asteroids.get(i).getY())<20)
+        // if shuttle hits asteroids
+        if(dist(shuttle.getX(), shuttle.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) < 20)
         {
           asteroids.remove(i);
+          endGame();
         }
       }
 
@@ -83,6 +86,7 @@ public void draw()
       textSize(13);
       text("Num Asteroids: " + asteroids.size(), 10, 725);
       text("Num Bullets: " + bullets.size(), 10, 740);
+
   // }
 }
 
@@ -283,11 +287,12 @@ class Asteroid extends Floater
     turn(speedOfRotation);
     super.move();   
   }
+  /*
   public void show()
   {
     image(alien, (int)Math.random()*SIZE, (int)Math.random()*SIZE, 10, 10);
     super.show();
-  }
+  }*/
   public void setX(int x) { myCenterX = x; } 
   public int getX() { return (int)myCenterX; }   
   public void setY(int y) { myCenterY = y; }   
@@ -315,4 +320,20 @@ class Stars
     stroke(255, 0, 0);
     ellipse((float)starX, (float)starY, 3, 3);
   }
+}
+
+public void endGame()
+{
+  /*noLoop();
+  shuttle.setDirectionX(0);
+  shuttle.setDirectionY(0);
+  background(0);
+  textSize(50);
+  stroke(255);
+  text("Game Over", SIZE/2, SIZE/2);
+  textSize(25);
+  text("Press 'n' to restart", SIZE/2, SIZE/2+60);
+  */
+  NUM_ASTEROIDS = 30;
+  redraw(); // OR setup();
 }
