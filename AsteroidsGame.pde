@@ -20,11 +20,11 @@ public void setup()
 {
   size(750, 750); // use ints for Processing
   
-  /*
+  /**/
   background(125);
   textSize(25);
   text("Press ENTER to Play", SIZE/2-110, SIZE/2);
-  */
+  /**/
 
   for (int i = 0; i < space.length; i++)
   {
@@ -37,14 +37,14 @@ public void setup()
   }
 
   shuttle = new SpaceShip();
-  shuttle.setPointDirection(270);
+  shuttle.setPointDirection(270);    
 
   // alien = loadImage("Alien.png");
 }
 public void draw() 
 {
-  /*if (key == ENTER)
-  {  */
+  /**/if (key == ENTER)
+  {  /**/
     background(0);
   
       for (int i = 0; i < space.length; i++)
@@ -64,6 +64,12 @@ public void draw()
         {
           asteroids.remove(i);
           endGame();
+          // noLoop();
+          // fill(125);
+          // rect(0, 0, SIZE, SIZE);
+          // textSize(25);
+          // stroke(255);
+          // text("Game Over", 400, SIZE/2);
         }
       }
 
@@ -87,7 +93,7 @@ public void draw()
       text("Num Asteroids: " + asteroids.size(), 10, 725);
       text("Num Bullets: " + bullets.size(), 10, 740);
 
-  // }
+  }
 }
 
 public void keyPressed()
@@ -323,7 +329,8 @@ class Stars
 
 public void endGame()
 {
-  /*noLoop();
+  System.out.println("endGame IS CALLED");
+  noLoop();
   shuttle.setDirectionX(0);
   shuttle.setDirectionY(0);
   background(0);
@@ -332,7 +339,5 @@ public void endGame()
   text("Game Over", SIZE/2, SIZE/2);
   textSize(25);
   text("Press 'n' to restart", SIZE/2, SIZE/2+60);
-  */
   NUM_ASTEROIDS = 30;
-  redraw(); // OR setup();
 }
