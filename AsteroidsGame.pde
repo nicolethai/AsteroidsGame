@@ -15,29 +15,38 @@ ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
 // PImage alien;
 
 public boolean lose = false;
+public int score = 0;
 
 public void setup() 
 {
   size(750, 750); // use ints for Processing
   
   /**/
-  background(125);
-  textSize(25);
-  text("Press ENTER to Play", SIZE/2-110, SIZE/2);
-  /**/
-
-  for (int i = 0; i < space.length; i++)
+  if (lose == true)
   {
-    space[i] = new Stars();
+    loseScreen();
   }
-
-  for (int i = 0; i < NUM_ASTEROIDS; i++)
+  else
   {
-    asteroids.add(new Asteroid());
-  }
+    startScreen();
+    // background(125);
+    // textSize(25);
+    // text("Press ENTER to Play", SIZE/2-110, SIZE/2);
+    /**/
 
-  shuttle = new SpaceShip();
-  shuttle.setPointDirection(270);    
+    for (int i = 0; i < space.length; i++)
+    {
+      space[i] = new Stars();
+    }
+
+    for (int i = 0; i < NUM_ASTEROIDS; i++)
+    {
+      asteroids.add(new Asteroid());
+    }
+
+    shuttle = new SpaceShip();
+    shuttle.setPointDirection(270);    
+  }
 
   // alien = loadImage("Alien.png");
 }
@@ -62,8 +71,8 @@ public void draw()
         // if shuttle hits asteroids
         if(dist(shuttle.getX(), shuttle.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) < 20)
         {
-          asteroids.remove(i);
-          endGame();
+          lose = true;
+          setup();
           // noLoop();
           // fill(125);
           // rect(0, 0, SIZE, SIZE);
@@ -84,12 +93,15 @@ public void draw()
             // System.out.println("Bullet hit Asteroid.");
             asteroids.remove(j);
             bullets.remove(i);
+            score++;
             break; // breaks out of loop to recheck ArrayList.size() in loop i
           }
         }
       }
 
       textSize(13);
+      stroke(255);
+      text("Score: " + score, 10, 50);
       text("Num Asteroids: " + asteroids.size(), 10, 725);
       text("Num Bullets: " + bullets.size(), 10, 740);
 
@@ -130,6 +142,13 @@ public void keyPressed()
   {
     System.out.println("other key");
   }*/
+
+  /*if(key == 'n')
+  {
+    NUM_ASTEROIDS = 30;
+    setup();
+  }
+  */
 }
 
 class SpaceShip extends Floater  
@@ -327,9 +346,9 @@ class Stars
   }
 }
 
-public void endGame()
+public void loseScreen()
 {
-  System.out.println("endGame IS CALLED");
+  System.out.println("loseScreen IS CALLED");
   noLoop();
   shuttle.setDirectionX(0);
   shuttle.setDirectionY(0);
@@ -338,6 +357,11 @@ public void endGame()
   stroke(255);
   text("Game Over", SIZE/2, SIZE/2);
   textSize(25);
-  text("Press 'n' to restart", SIZE/2, SIZE/2+60);
-  NUM_ASTEROIDS = 30;
+  text("Press ENTER to restart", SIZE/2, SIZE/2+60);
+}
+public void startScreen()
+{
+    background(125);
+    textSize(25);
+    text("Press ENTER to Play", SIZE/2-110, SIZE/2);
 }
