@@ -1,3 +1,13 @@
+/***
+  THIS PROGRAM DOES NOT WORK.
+  - startScreen() will be called and will work. [ENTER] works.
+  - loseScreen() will be called when "collision" is detected.
+  - counting works. (assumed)
+  - THE ACTUAL GAME DOES NOT WORK ANYMORE
+    - keyPressed()???
+      - key functions do not work anymore.
+***/
+
 //your variable declarations here
 final int SIZE = 750;
 
