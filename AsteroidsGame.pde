@@ -8,6 +8,12 @@
       - key functions do not work anymore.
 ***/
 
+/***
+  TO DO:
+  - modes ie 0 = gameStart(); 1 = gameOver()
+  - flow 
+***/
+
 //your variable declarations here
 final int SIZE = 750;
 
