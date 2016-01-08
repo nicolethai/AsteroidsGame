@@ -1,11 +1,14 @@
 /***	Asteroids Game redo/scratch board	***/
 
+// 01.08.16 THIS CODE WORKS. endGame() etc removed.
+
 /***
   TO DO:
-  - modes ie 0 = gameStart(); 1 = gameOver()
+  - modes ie. 0 = gameStart(); 1 = gameOver()
   - flow 
 ***/
 
+//your variable declarations here
 final int SIZE = 750;
 
 SpaceShip shuttle;
@@ -20,44 +23,35 @@ public int NUM_ASTEROIDS = 30;
 ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
 
 public boolean lose = false;
-public int score = 0;
 
 public void setup() 
 {
   size(750, 750); // use ints for Processing
   
-  /**/
-  if (lose == true)
+  /*
+  background(125);
+  textSize(25);
+  text("Press ENTER to Play", SIZE/2-110, SIZE/2);
+  */
+
+  for (int i = 0; i < space.length; i++)
   {
-    loseScreen();
+    space[i] = new Stars();
   }
-  else
+
+  for (int i = 0; i < NUM_ASTEROIDS; i++)
   {
-    startScreen();
-    // background(125);
-    // textSize(25);
-    // text("Press ENTER to Play", SIZE/2-110, SIZE/2);
-    /**/
-
-    for (int i = 0; i < space.length; i++)
-    {
-      space[i] = new Stars();
-    }
-
-    for (int i = 0; i < NUM_ASTEROIDS; i++)
-    {
-      asteroids.add(new Asteroid());
-    }
-
-    shuttle = new SpaceShip();
-    shuttle.setPointDirection(270);    
+    asteroids.add(new Asteroid());
   }
+
+  shuttle = new SpaceShip();
+  shuttle.setPointDirection(270);
 
 }
 public void draw() 
 {
-  /**/if (key == ENTER)
-  {  /**/
+  /*if (key == ENTER)
+  {  */
     background(0);
   
       for (int i = 0; i < space.length; i++)
@@ -75,14 +69,7 @@ public void draw()
         // if shuttle hits asteroids
         if(dist(shuttle.getX(), shuttle.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()) < 20)
         {
-          lose = true;
-          setup();
-          // noLoop();
-          // fill(125);
-          // rect(0, 0, SIZE, SIZE);
-          // textSize(25);
-          // stroke(255);
-          // text("Game Over", 400, SIZE/2);
+          asteroids.remove(i);
         }
       }
 
@@ -94,22 +81,19 @@ public void draw()
         {
           if(dist(bullets.get(i).getX(), bullets.get(i).getY(), asteroids.get(j).getX(), asteroids.get(j).getY())<20)
           {
-            // System.out.println("Bullet hit Asteroid.");
+            System.out.println("Bullet hit Asteroid.");
             asteroids.remove(j);
             bullets.remove(i);
-            score++;
             break; // breaks out of loop to recheck ArrayList.size() in loop i
           }
         }
       }
 
       textSize(13);
-      stroke(255);
-      text("Score: " + score, 10, 50);
       text("Num Asteroids: " + asteroids.size(), 10, 725);
       text("Num Bullets: " + bullets.size(), 10, 740);
 
-  }
+  // }
 }
 
 public void keyPressed()
@@ -141,22 +125,15 @@ public void keyPressed()
   {
     bullets.add(new Bullet(shuttle));
   }
-  /*
   else
   {
     System.out.println("other key");
-  }*/
-
-  /*if(key == 'n')
-  {
-    NUM_ASTEROIDS = 30;
-    setup();
   }
-  */
 }
 
 class SpaceShip extends Floater  
 {   
+  boolean danger;
   public SpaceShip() 
   {
     corners = 4;
@@ -170,6 +147,7 @@ class SpaceShip extends Floater
     myDirectionX = 0;
     myDirectionY = 0;
     myPointDirection = 0;
+    danger = false;
   }
   public void setX(int x) { myCenterX = x; } 
   public int getX() { return (int)myCenterX; }   
